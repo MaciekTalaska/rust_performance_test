@@ -18,5 +18,9 @@ fn recursive(bench: &mut Bencher) {
     bench.iter(|| black_box(performance_test::compute_recursive(2)));
 }
 
-benchmark_group!(benches, functional, imperative, recursive);
+fn recursive_opt(bench: &mut Bencher) {
+    bench.iter(|| black_box(performance_test::compute_recursive_opt(2)));
+}
+
+benchmark_group!(benches, functional, imperative, recursive, recursive_opt);
 benchmark_main!(benches);

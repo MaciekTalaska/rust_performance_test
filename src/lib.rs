@@ -27,12 +27,26 @@ pub fn compute_recursive(count: u8) -> u32 {
 }
 
 fn compute_recursive_internal(count: u8, current: u32) -> u32 {
-    let new_current = current * 6 + return_5() - 1;
+    let new_current = current * 6 + return_5() -1;
     match count  {
         0 => return new_current,
         _ => compute_recursive_internal(count-1, new_current)
     }
 }
+
+pub fn compute_recursive_opt(count: u8) -> u32 {
+    compute_recursive_internal_opt(count-1, 0)
+}
+
+fn compute_recursive_internal_opt(count: u8, current: u32) -> u32 {
+    let new_current = (current << 2) + (current << 1)
+        + return_5() - 1;
+    match count  {
+        0 => return new_current,
+        _ => compute_recursive_internal_opt(count-1, new_current)
+    }
+}
+
 
 #[cfg(test)]
 mod computational_test {
@@ -42,8 +56,10 @@ mod computational_test {
             let functional = super::compute_functional(5);
             let imperative = super::compute_imperative(5);
             let recursive = super::compute_recursive(5);
+            let recursive_opt = super::compute_recursive(5);
             assert_eq!(functional, imperative);
             assert_eq!(recursive, imperative);
+            assert_eq!(recursive, recursive_opt);
         }
     }
 }
