@@ -3,22 +3,22 @@ fn return_5() -> u32 {
     return 5;
 }
 
-pub fn compute_functional(dices: u8) -> u32 {
-    let indices = (0..dices).collect::<Vec<u8>>().iter()
+pub fn compute_functional(count: u8) -> u32 {
+    let elements = (0..count).collect::<Vec<u8>>().iter()
         .map(|_e| return_5()-1).collect::<Vec<u32>>();
-    let index = indices.iter()
+    let value = elements.iter()
         .fold(0, |sum, val| sum * 6 + val);
 
-    index
+    value
 }
 
-pub fn compute_imperative(dices: u8) -> u32 {
-    let mut index: u32 = 0;
-    for _i in { 0..dices } {
-        index *= 6;
-        index += (return_5()) - 1;
+pub fn compute_imperative(count: u8) -> u32 {
+    let mut value: u32 = 0;
+    for _i in { 0..count } {
+        value *= 6;
+        value += (return_5()) - 1;
     }
-    index
+    value
 }
 
 //#[cfg(test)]
