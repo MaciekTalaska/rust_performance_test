@@ -12,6 +12,15 @@ pub fn compute_functional(count: u8) -> u32 {
     value
 }
 
+pub fn compute_functional_opt(count: u8) -> u32 {
+    let elements = (0..count).collect::<Vec<u8>>().iter()
+        .map(|_e| return_5()-1).collect::<Vec<u32>>();
+    let value = elements.iter()
+        .fold(0, |sum, val| (sum << 2) + (sum <<1) + val);
+
+    value
+}
+
 pub fn compute_imperative(count: u8) -> u32 {
     let mut value: u32 = 0;
     for _i in { 0..count } {
@@ -21,6 +30,14 @@ pub fn compute_imperative(count: u8) -> u32 {
     value
 }
 
+pub fn compute_imperative_opt(count: u8) -> u32 {
+    let mut value: u32 = 0;
+    for _i in { 0..count } {
+        value = (value <<2) + (value << 1);
+        value += (return_5()) - 1;
+    }
+    value
+}
 
 pub fn compute_recursive(count: u8) -> u32 {
     compute_recursive_internal(count-1, 0)
@@ -54,12 +71,16 @@ mod computational_test {
     fn compare() {
         for _i in { 0..100 } {
             let functional = super::compute_functional(5);
+            let functional_opt = super::compute_functional(5);
             let imperative = super::compute_imperative(5);
+            let imperative_opt = super::compute_imperative_opt(5);
             let recursive = super::compute_recursive(5);
             let recursive_opt = super::compute_recursive(5);
             assert_eq!(functional, imperative);
+            assert_eq!(functional, functional_opt);
             assert_eq!(recursive, imperative);
             assert_eq!(recursive, recursive_opt);
+            assert_eq!(imperative, imperative_opt);
         }
     }
 }
