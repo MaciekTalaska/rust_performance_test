@@ -13,12 +13,7 @@ pub fn compute_functional(count: u8) -> u32 {
 }
 
 pub fn compute_functional_opt(count: u8) -> u32 {
-    let elements = (0..count).collect::<Vec<u8>>().iter()
-        .map(|_e| return_5()-1).collect::<Vec<u32>>();
-    let value = elements.iter()
-        .fold(0, |sum, val| (sum << 2) + (sum <<1) + val);
-
-    value
+    (0..count).map(|_e| return_5()-1).fold(0, |sum, val| (sum << 2) + (sum <<1) + val)
 }
 
 pub fn compute_imperative(count: u8) -> u32 {
