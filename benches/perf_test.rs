@@ -19,7 +19,7 @@ fn functional(bench: &mut Bencher) {
 }
 
 fn functional_opt(bench: &mut Bencher) {
-    bench.iter(|| black_box(performance_test::compute_functional(2)));
+    bench.iter(|| black_box(performance_test::compute_functional_opt(2)));
 }
 
 fn recursive(bench: &mut Bencher) {
