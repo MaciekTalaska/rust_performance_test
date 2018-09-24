@@ -3,19 +3,19 @@ fn return_5() -> u32 {
     return 5;
 }
 
-pub fn compute_functional(count: u8) -> u32 {
+pub fn compute_functional(count: u32) -> u32 {
     (0..count)
         .map(|_e| return_5()-1)
         .fold(0, |sum, val| sum * 6 + val)
 }
 
-pub fn compute_functional_opt(count: u8) -> u32 {
+pub fn compute_functional_opt(count: u32) -> u32 {
     (0..count)
         .map(|_e| return_5()-1)
         .fold(0, |sum, val| (sum << 2) + (sum <<1) + val)
 }
 
-pub fn compute_imperative(count: u8) -> u32 {
+pub fn compute_imperative(count: u32) -> u32 {
     let mut value: u32 = 0;
     for _i in { 0..count } {
         value *= 6;
@@ -24,7 +24,7 @@ pub fn compute_imperative(count: u8) -> u32 {
     value
 }
 
-pub fn compute_imperative_opt(count: u8) -> u32 {
+pub fn compute_imperative_opt(count: u32) -> u32 {
     let mut value: u32 = 0;
     for _i in { 0..count } {
         value = (value <<2) + (value << 1);
@@ -33,11 +33,11 @@ pub fn compute_imperative_opt(count: u8) -> u32 {
     value
 }
 
-pub fn compute_recursive(count: u8) -> u32 {
+pub fn compute_recursive(count: u32) -> u32 {
     compute_recursive_internal(count-1, 0)
 }
 
-fn compute_recursive_internal(count: u8, current: u32) -> u32 {
+fn compute_recursive_internal(count: u32, current: u32) -> u32 {
     let new_current = current * 6 + return_5() -1;
     match count  {
         0 => return new_current,
@@ -45,11 +45,11 @@ fn compute_recursive_internal(count: u8, current: u32) -> u32 {
     }
 }
 
-pub fn compute_recursive_opt(count: u8) -> u32 {
+pub fn compute_recursive_opt(count: u32) -> u32 {
     compute_recursive_internal_opt(count-1, 0)
 }
 
-fn compute_recursive_internal_opt(count: u8, current: u32) -> u32 {
+fn compute_recursive_internal_opt(count: u32, current: u32) -> u32 {
     let new_current = (current << 2) + (current << 1)
         + return_5() - 1;
     match count  {
