@@ -1,4 +1,30 @@
 
+pub fn build_vector_imperative(size: u32) -> Vec<u32> {
+    let mut v = Vec::with_capacity(size as usize);
+    for _i in { 0..size } {
+        v.push(self::return_5());
+    }
+
+    v
+}
+
+pub fn build_vector_functional(size: u32) -> Vec<u32> {
+    let v = (0..size).map(|_e| return_5());
+    v.collect::<Vec<u32>>()
+}
+
+fn build_vector_recursive_internal(size: u32, v: Vec<u32>) -> Vec<u32>  {
+    let new_vector = [v, vec!(self::return_5())].concat();
+    match size {
+        0 => new_vector,
+        _ => build_vector_recursive_internal(size-1, new_vector)
+    }
+}
+
+pub fn build_vector_recursive(size: u32)  -> Vec<u32> {
+   build_vector_recursive_internal(size-1, Vec::new())
+}
+
 fn return_5() -> u32 {
     return 5;
 }
@@ -76,5 +102,17 @@ mod computational_test {
             assert_eq!(recursive, recursive_opt);
             assert_eq!(imperative, imperative_opt);
         }
+    }
+}
+
+#[cfg(test)]
+mod build_vector_test {
+    #[test]
+    fn compare_vectors() {
+        let vector_f = super::build_vector_functional(100);
+        let vector_i = super::build_vector_imperative(100);
+        let vector_r = super::build_vector_recursive(100);
+        assert_eq!(vector_f, vector_i);
+        assert_eq!(vector_i, vector_r);
     }
 }
