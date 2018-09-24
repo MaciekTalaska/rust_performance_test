@@ -1,12 +1,12 @@
 #[macro_use]
 extern crate bencher;
-extern crate performance_test;
+extern crate rust_performance_test;
 
 const COMPUTATION_SIZE: u32 = 400;
 
 use bencher::Bencher;
 use bencher::black_box;
-use performance_test::*;
+use rust_performance_test::*;
 
 fn computation_imperative(bench: &mut Bencher) {
     bench.iter( || black_box(compute_imperative(COMPUTATION_SIZE)));

@@ -1,10 +1,10 @@
 #[macro_use]
 extern crate bencher;
-extern crate performance_test;
+extern crate rust_performance_test;
 
 use bencher::Bencher;
 use bencher::black_box;
-use performance_test::*;
+use rust_performance_test::*;
 
 const VECTOR_SIZE: u32 = 4;
 
