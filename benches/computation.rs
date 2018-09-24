@@ -31,5 +31,5 @@ fn recursive_opt(bench: &mut Bencher) {
     bench.iter(|| black_box(performance_test::compute_recursive_opt(self::COMPUTATION_SIZE)));
 }
 
-benchmark_group!(benches, functional, functional_opt, imperative, imperative_opt, recursive, recursive_opt);
-benchmark_main!(benches);
+benchmark_group!(computation, functional, functional_opt, imperative, imperative_opt, recursive, recursive_opt);
+benchmark_main!(computation);
