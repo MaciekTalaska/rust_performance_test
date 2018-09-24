@@ -32,5 +32,11 @@ fn computation_recursive_opt(bench: &mut Bencher) {
     bench.iter(|| black_box(compute_recursive_opt(COMPUTATION_SIZE)));
 }
 
-benchmark_group!(computation_benchmarks, computation_functional, computation_functional_opt, computation_imperative, computation_imperative_opt, computation_recursive, computation_recursive_opt);
+benchmark_group!(computation_benchmarks,
+    computation_functional,
+    computation_functional_opt,
+    computation_imperative,
+    computation_imperative_opt,
+    computation_recursive,
+    computation_recursive_opt);
 benchmark_main!(computation_benchmarks);
