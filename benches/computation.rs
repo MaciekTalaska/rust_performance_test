@@ -6,29 +6,30 @@ const COMPUTATION_SIZE: u32 = 400;
 
 use bencher::Bencher;
 use bencher::black_box;
+use performance_test::*;
 
 fn imperative(bench: &mut Bencher) {
-    bench.iter( || black_box(performance_test::compute_imperative(self::COMPUTATION_SIZE)));
+    bench.iter( || black_box(compute_imperative(COMPUTATION_SIZE)));
 }
 
 fn imperative_opt(bench: &mut Bencher) {
-    bench.iter( || black_box(performance_test::compute_imperative_opt(self::COMPUTATION_SIZE)));
+    bench.iter( || black_box(compute_imperative_opt(COMPUTATION_SIZE)));
 }
 
 fn functional(bench: &mut Bencher) {
-    bench.iter(|| black_box(performance_test::compute_functional(self::COMPUTATION_SIZE)));
+    bench.iter(|| black_box(compute_functional(COMPUTATION_SIZE)));
 }
 
 fn functional_opt(bench: &mut Bencher) {
-    bench.iter(|| black_box(performance_test::compute_functional_opt(self::COMPUTATION_SIZE)));
+    bench.iter(|| black_box(compute_functional_opt(COMPUTATION_SIZE)));
 }
 
 fn recursive(bench: &mut Bencher) {
-    bench.iter(|| black_box(performance_test::compute_recursive(self::COMPUTATION_SIZE)));
+    bench.iter(|| black_box(compute_recursive(COMPUTATION_SIZE)));
 }
 
 fn recursive_opt(bench: &mut Bencher) {
-    bench.iter(|| black_box(performance_test::compute_recursive_opt(self::COMPUTATION_SIZE)));
+    bench.iter(|| black_box(compute_recursive_opt(COMPUTATION_SIZE)));
 }
 
 benchmark_group!(computation, functional, functional_opt, imperative, imperative_opt, recursive, recursive_opt);
