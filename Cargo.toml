@@ -3,13 +3,14 @@ name = "performance_test"
 version = "0.1.0"
 authors = ["MaciekTalaska <maciek.talaska@gmail.com>"]
 
-[dependencies]
-#rand = "0.4.2"
-
 [dev-dependencies]
 rustc-test = "0.3.0"
 bencher = "0.1"
 
 [[bench]]
-name = "perf_test"
 harness = false
+name = "vectors"
+
+[[bench]]
+harness = false
+name = "computation"
