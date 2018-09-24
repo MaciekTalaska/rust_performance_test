@@ -4,7 +4,7 @@ extern crate rust_performance_test;
 
 use bencher::Bencher;
 use bencher::black_box;
-use rust_performance_test::*;
+use rust_performance_test::vectors::*;
 
 const VECTOR_SIZE: u32 = 4;
 

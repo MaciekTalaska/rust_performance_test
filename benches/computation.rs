@@ -6,7 +6,7 @@ const COMPUTATION_SIZE: u32 = 400;
 
 use bencher::Bencher;
 use bencher::black_box;
-use rust_performance_test::*;
+use rust_performance_test::computation::*;
 
 fn computation_imperative(bench: &mut Bencher) {
     bench.iter( || black_box(compute_imperative(COMPUTATION_SIZE)));
